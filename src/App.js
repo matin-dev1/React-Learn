@@ -1,9 +1,10 @@
-import React , {useState} from 'react';
+import React , {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import './style.css'
 
 import Hello from './Hello';
 import Timer from './Timer';
+import TimeList from './TimeList';
 
 
 
@@ -33,20 +34,35 @@ import Timer from './Timer';
 }
 */
 
+
+
 const App = ()=>{
-  const[title , setTitle] = useState("سلام");
+    const [title , setTitle] = useState("سلام دوستان عزیزم");
+    const [isLight , setIsLight] = useState(false);
+    const [timeArr , setTimeArr] = useState(["00 : 05 : 12" , "00 : 06 : 32"]);
+    
+    useEffect(()=>{
+        console.log("useEffect");
+        return ()=>{
+            
+        }
+    },[isLight])
 
-  const handleSetTtitle = ()=>{
-    setTitle("خوش آمدید")
-  }
+    const handleSetIsLight = ()=>{
+        setIsLight(!isLight)
+    }
 
-  return(
-    <div className='main'>
-      <Hello title={title}/>
-      <Timer handleSetTtitle={handleSetTtitle}/>
-    </div>
-  )
-
+    return (
+        <div className="main" style={{background:isLight ? "white" : "black" }}>
+            <Hello title={title}/>        
+            <Timer 
+            timeArr ={timeArr}
+            setTimeArr ={setTimeArr}
+            isLight={isLight} 
+            handleSetIsLight={handleSetIsLight}/>
+        </div>
+    ) 
 }
+
 
 export default App;

@@ -5,6 +5,7 @@ import './style.css'
 import Hello from './Hello';
 import Timer from './Timer';
 import TimeList from './TimeList';
+import { TestContext } from './testContext';
 
 
 
@@ -53,14 +54,18 @@ const App = ()=>{
     }
 
     return (
+      <TestContext.Provider value={{
+        timeArr,
+        setTimeArr
+      }}>
         <div className="main" style={{background:isLight ? "white" : "black" }}>
             <Hello title={title}/>        
             <Timer 
-            timeArr ={timeArr}
-            setTimeArr ={setTimeArr}
             isLight={isLight} 
             handleSetIsLight={handleSetIsLight}/>
+            <TimeList />
         </div>
+      </TestContext.Provider>
     ) 
 }
 

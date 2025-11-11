@@ -1,71 +1,44 @@
-import React , {useEffect, useState} from 'react';
-import {createRoot} from 'react-dom/client';
-import './style.css'
-
-import Hello from './Hello';
-import Timer from './Timer';
-import TimeList from './TimeList';
-import { TestContext } from './testContext';
-
-
-
-/*class App extends React.Component{
-  constructor(){
-    super();
-    this.state = {
-      title : "Hello my Friends."
-    }
-  }
-
-  handleSetTtitle = ()=>{
-    this.setState({
-      title : "Welcome to Codeyad"
-    })
-
-  }
-
-  render(){
-    return (
-      <div className='main'>
-        <Hello title={this.state.title}/>
-        <Timer handleSetTtitle={this.handleSetTtitle}/>
-      </div>
-    )
-  }
-}
-*/
-
-
+import React, { useState } from 'react';
+import TopForm from './TopForm';
+import TaskItems from './TaskItems';
+import {taskContext} from './taskContext'
 
 const App = ()=>{
-    const [title , setTitle] = useState("سلام دوستان عزیزم");
-    const [isLight , setIsLight] = useState(false);
-    const [timeArr , setTimeArr] = useState(["00 : 05 : 12" , "00 : 06 : 32"]);
-    
-    useEffect(()=>{
-        console.log("useEffect");
-        return ()=>{
-            
-        }
-    },[isLight])
 
-    const handleSetIsLight = ()=>{
-        setIsLight(!isLight)
-    }
+    const [taskItems , setTaskItems] = useState([
+        {
+            id:1,
+            title:"کار شماره 1",
+            done:false
+        },
+        {
+            id:2,
+            title:"کار شماره 2",
+            done:true            
+        },
+        {
+            id:3,
+            title:"کار شماره 3",
+            done:false             
+        }
+    ])
+        
 
     return (
-      <TestContext.Provider value={{
-        timeArr,
-        setTimeArr
-      }}>
-        <div className="main" style={{background:isLight ? "white" : "black" }}>
-            <Hello title={title}/>        
-            <Timer 
-            isLight={isLight} 
-            handleSetIsLight={handleSetIsLight}/>
-            <TimeList />
+        <div className="container w-100 h-100 p-3">
+            <div className="row h-100 justify-content-center align-align-items-start">
+                <div className="col-12 col-md-8 col-lg-6 bg-light shadow rounded-3 p-3 h_fit">
+                    <taskContext.Provider value={{
+                        taskItems,
+                        setTaskItems
+                    }}>
+                        <TopForm />
+                        <TaskItems />
+                    </taskContext.Provider>
+                </div>
+            </div>
         </div>
-      </TestContext.Provider>
+
     ) 
 }
 

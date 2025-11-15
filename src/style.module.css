@@ -41,7 +41,7 @@ td , th {
 }
 .sidebar_list li:not(.sidebar_avatar):hover{
     padding: 0.3rem 1rem;
-    background: #ebe6e681;
+    background: #ff0000b5;
 }
 
 
@@ -54,6 +54,8 @@ td , th {
     height: 100vh;
     overflow: auto;
     background: url('./assets/images/body_back7.jpg');
+    background-position:center;
+    background-size: cover;
 }
 
 .menu_button{

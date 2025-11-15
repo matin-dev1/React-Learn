@@ -1,6 +1,8 @@
 @font-face {
-    font-family: "BYekan";
-    src: url("../fonts/BYekan-webfont.eot") format("eot"), url("../fonts/BYekan-webfont.woff") format("woff"), url("../fonts/BYekan-webfont.ttf") format("truetype");
+    font-family: "Peyda";
+    src: url("../fonts/PeydaWeb-Regular.eot") format("eot"),
+    url("../fonts/PeydaFaNumWeb-Regular.woff") format("woff"), 
+    url("../fonts/Peyda-Regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
@@ -16,10 +18,11 @@ body{
     background: rgb(9, 185, 103);
     background: linear-gradient(90deg, rgb(9, 187, 104) 0%, hsla(186, 100%, 69%, 1) 100%);
     background: -moz-linear-gradient(90deg, rgb(7, 190, 105) 0%, hsla(186, 100%, 69%, 1) 100%);
+    color: rgba(228, 11, 11, 0.815);
 }
 
 *{
-    font-family: BYekan;
+    font-family: Peyda;
     direction: rtl;
     text-align: right;
 }
@@ -40,4 +43,9 @@ body{
 
 .h_fit{
     height: fit-content;
+}
+
+.active_nav li{
+    background-color: #ff0000bb !important;
+    color: rgb(255, 255, 255);
 }

@@ -1,34 +1,58 @@
-import React, { useState } from 'react';
-import { useParams , Outlet, useNavigate, useLocation } from 'react-router';
+import React , {useEffect, useState} from 'react';
+import { useParams , useNavigate } from 'react-router';
 import style from '../style.module.css'
-import axios from 'axios';
+import axios from 'axios'
+import { setUserService, updateUserService } from '../services/UserService';
 
 const AddUser = ()=>{
 
     const {userId} = useParams();
-    const params = useLocation(); 
     const navigate = useNavigate();
 
     const [data , setData] = useState({
-        name : "" ,
+        name: "" ,
         username : "",
         email : "" ,
         address : {
-            street : "",
-            city : "",
-            suite : "",
-            zipcode : ""
+            street: "",
+            city: "",
+            suite: "",
+            zipcode: ""
         }
-
     })
+
 
     const handleAddUser = (e)=>{
         e.preventDefault();
-        axios.post('https://jsonplaceholder.typicode.com/users' , data).then(res=>{
-            console.log(res);
-        });
+
+        if (!userId) {
+            setUserService(data);
+        }else{
+            updateUserService(data , userId);
+        }
 
     }
+
+    useEffect(()=>{
+
+        axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`).then(res=>{
+            setData({
+                name: res.data.name ,
+                username : res.data.username ,
+                email : res.data.email,
+                address : {
+                    street: res.data.address.street ,
+                    city: res.data.address.city ,
+                    suite: res.data.address.suite ,
+                    zipcode: res.data.address.zipcode 
+                }
+            })
+        });
+
+
+    },[])
+
+
 
     return (
         <div className={`${style.item_content} mt-5 p-4 container-fluid container`}>
@@ -37,7 +61,7 @@ const AddUser = ()=>{
             </h4>
             <div className="row justify-content-center mt-5 ">
                 <form onSubmit={handleAddUser} className="col-12 col-md-6 bg-light rounded shadow-lg p-3">
-                    <div class="mb-3">
+                    <div className="mb-3">
                         <label className="form-label">نام و نام خانوادگی</label>
                         <input type="text" className="form-control" value={data.name} onChange={(e)=>setData({...data , name:e.target.value})}/>
                     </div>
@@ -67,7 +91,8 @@ const AddUser = ()=>{
                     
                     <div className="col-12 text-start">
                         <button type="button" className="btn btn-danger ms-2"
-                        onClick={()=>navigate(-1)}>بازگشت</button>
+                        onClick={()=>navigate(-1)}
+                        >بازگشت</button>
                         <button type="submit" className="btn btn-primary" >
                         {userId ? "ویرایش " : "افزودن " }
                         </button>

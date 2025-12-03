@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link , useNavigate} from 'react-router-dom';
 import style from '../style.module.css';
-import swal from 'sweetalert';
 import axios from 'axios';
 import WithAlert from '../HOC/WithAlert';
+import { Alert, Confirm } from '../utils/Alert';
+
 
 const Users = (props)=>{
 
@@ -11,7 +12,7 @@ const Users = (props)=>{
     const [users , setUsers] = useState([]);
     const [mainUsers , setMainUsers] = useState([]);
 
-    const {Confirm , Alert} = props
+    //const {Confirm , Alert} = props
 
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
@@ -107,4 +108,4 @@ const Users = (props)=>{
 
 }
 
-export default WithAlert(Users);
+export default Users;

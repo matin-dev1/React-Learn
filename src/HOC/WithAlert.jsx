@@ -23,7 +23,7 @@ const WithAlert = (MainComponent)=>{
         }
 
         return(
-            <MainComponent {...props} Confirm={Confirm} Alert={Alert}/>
+        <MainComponent {...props} Confirm={Confirm} Alert={Alert}/>
         )
     }
     return NewComponent

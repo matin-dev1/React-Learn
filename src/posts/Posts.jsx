@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getPostsService } from '../services/PostSErvice';
 import style from '../style.module.css'
+import useTitle from '../hooks/useTitle';
 // import Counter from './Counter';
 
 const Posts = ()=>{
@@ -33,6 +34,8 @@ const Posts = ()=>{
             console.log("destroy component");
         }
 
+
+
     } , [])
 
     useEffect(()=>{
@@ -43,6 +46,8 @@ const Posts = ()=>{
         console.log("evry change uId");
         handleSearch()
     } , [uId])
+
+    useTitle("پست ها")
 
     return (
         <div className={`${style.item_content} mt-5 p-4 container-fluid`}>

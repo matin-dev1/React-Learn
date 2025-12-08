@@ -4,6 +4,7 @@ import style from '../style.module.css';
 import axios from 'axios';
 import WithAlert from '../HOC/WithAlert';
 import { Alert, Confirm } from '../utils/Alert';
+import useTitle from '../hooks/useTitle';
 
 
 const Users = (props)=>{
@@ -21,7 +22,11 @@ const Users = (props)=>{
         }).catch(err=>{
             console.log(err);
         })
+
+
     }, []);
+
+    useTitle("کاربران")
 
     const handleDelete = async (itemId)=>{
 

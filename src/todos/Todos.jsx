@@ -1,8 +1,11 @@
 import React from 'react';
 import style from '../style.module.css'
 import Counter from './Counter';
+import useTitle from '../hooks/useTitle';
 
 const Todos = ()=>{
+
+    useTitle("کارها")
 
     return (
         <div className={`${style.item_content} mt-5 p-4 container-fluid`}>

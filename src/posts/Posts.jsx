@@ -13,7 +13,7 @@ const Posts = ()=>{
     const navigate = useNavigate();
 
     const handleSearch = ()=>{
-        if(uId > 0) setPosts(mainPosts.filter(p=>p.userId === uId))
+        if(uId > 0) setPosts(mainPosts.filter(p=>p.userId == uId))
         else setPosts(mainPosts)
     }
 
@@ -81,7 +81,7 @@ const Posts = ()=>{
                         <td>{u.body}</td>
                         <td>
                             <i className="fas fa-edit text-warning mx-2 pointer"
-                            onClick={()=>navigate(`/posts/add/${u.id}`)}
+                            onClick={()=>navigate(`/post/add/${u.id}`)}
                             ></i>
                             <i className="fas fa-trash text-danger mx-2 pointer"
                             onClick={()=>handleDelete(u.id)}

@@ -1,53 +1,39 @@
-import { type } from '@testing-library/user-event/dist/type';
-import React, { useReducer } from 'react';
+import react, { useMemo, useState } from "react"
 
-const init = {
-    value1 : 0,
-    value2 : 5
-}
-const reducer = (state , action) =>{
-    switch (action.type) {
-        case 'increment':
-            return {...state , value1: state.value1 + action.val}
-        case 'decrement':
-            return {...state , value1: state.value1 - action.val}
-        case 'increment2':
-            return {...state , value2: state.value2 + action.val}
-        case 'decrement2':
-            return {...state , value2: state.value2 - action.val}            
-        case 'reset':
-            return init
-        default:
-            return state;            
+const Counter = ()=>{
+    const [count , setCount] = useState(0);
+    const [countTwo , setCountTwo] = useState(10);
+
+    const incrementOne = ()=>{
+        setCount(count + 1)
     }
-}
 
-const Counter = () => {
+    const incrementTwo = ()=>{
+        setCountTwo(countTwo + 10)
+    }
 
-    const [count , dispatch] = useReducer(reducer , init) 
-
-
-
-    return (
-        <div className='text-center my-3'>
-            <h1 className='text-center'>{count.value1}</h1>
-            <h1 className='text-center'>{count.value2}</h1>
-
-            <div className='text-center my-3'>
-                <button className='btn btn-success' onClick={()=>dispatch({type: 'increment' , val:1})}>افزایش</button>
-                <button className='btn btn-danger' onClick={()=>dispatch({type: 'decrement' , val:2})}>کاهش</button>
-            </div>
-
-            <div className='text-center my-3'>
-                <button className='btn btn-success' onClick={()=>dispatch({type: 'increment2' , val:5})}>افزایش 2</button>
-                <button className='btn btn-danger' onClick={()=>dispatch({type: 'decrement2' , val:5})}>کاهش 2</button>
-            </div>            
+    const isEven = useMemo(()=>{
+        console.log(count);
+        let i = 0
+        while (i < 100000) {
+            console.log(i);
+            i++
+        }
+        return count % 2 === 0
+    } , [count])
 
 
-            <button className='btn btn-warning' onClick={()=>dispatch({type: 'reset'})}>ریست</button>
 
+
+    return(
+        <div className="text-center my-3">
+            <h5 className="text-center">{isEven ? "ODD" : "EVEN"}</h5>
+            <button className="btn btn-success" onClick={incrementOne}>{`count-one : ${count}`}</button>
+            <br />
+            <br />
+            <button className="btn btn-success" onClick={incrementTwo}>count-two : {countTwo}</button>
         </div>
-    );
+    )
 }
 
 export default Counter;

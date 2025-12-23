@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import getWeatherInfo from '../redux/weather/weatherAction';
+//import getWeatherInfo from '../redux/weather/weatherAction';
 import PersianDate from './PersianDate';
+import { sendWeatherRequest } from '../redux/weather/weatherAction';
 
 
 const Weather = () => {
@@ -14,7 +15,7 @@ const Weather = () => {
 
     const handleGetWeather = e=>{
         e.preventDefault()
-        dispatch(getWeatherInfo(query))
+        dispatch(sendWeatherRequest(query))
         setQuery('')
     }
 
